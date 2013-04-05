@@ -70,7 +70,6 @@ namespace Innlevering_2.GameObjects
         //Kenneth: Må ha keyboard for å teste inventory
         KeyboardState oldKeyboardState;
         KeyboardState currentKeyboardState;
-        
 
         public Player(Game game, PlayerIndex playerIndex, Vector2 PlayerPosition)
             : base(game)
@@ -229,7 +228,26 @@ namespace Innlevering_2.GameObjects
 
         public void Damage(Projectile projectile)
         {
-            // TODO take damage
+            Health -= (int)projectile.Damage;
+
+            if(Health <= 0)
+            {
+                //player got killed by projectile.Owner
+                //Life--
+                //OTHER player got ++ Kills
+                //THIS player got ++ Deaths
+                //Play death animation && death-sound
+                //respawn!
+                Deaths++;
+                projectile.Owner.Kills++;
+                Life--;
+
+                if (Life <= 0)
+                {
+                    //TODO!!
+                    //Game Over
+                }
+            }
         }
 
         /*protected bool Collide()

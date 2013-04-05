@@ -59,6 +59,17 @@ namespace Innlevering_2.GameObjects
             {
                 HandleCollision(world);
             }
+
+            foreach (Player player in players)
+            {
+                if (player.Equals(Owner))
+                    break;
+
+                if (player.Bounds.Intersects(Collision))
+                {
+                    player.Damage(this);
+                }
+            }
         }
 
         protected abstract void HandleCollision(World world);
